@@ -6,6 +6,7 @@ namespace SportsLeague.Domain.Interfaces.Repositories
     {
         Task<Team?> GetByNameAsync(string name);
         Task<IEnumerable<Team>> GetByCityAsync(string city);
+        new Task<bool> ExistsAsync(int id);
     }
 
 }
