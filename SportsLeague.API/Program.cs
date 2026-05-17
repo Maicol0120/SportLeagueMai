@@ -31,8 +31,10 @@ builder.Services.AddScoped<ITournamentService, TournamentService>();
 builder.Services.AddScoped<IMatchService, MatchService>();
 
 
-// ── AutoMapper ──
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+// — AutoMapper —
+builder.Services.AddAutoMapper(cfg => {
+    // Aquí AutoMapper buscará automáticamente tus perfiles de mapeo (MappingProfile)
+}, AppDomain.CurrentDomain.GetAssemblies());
 
 // ── Controllers ──
 builder.Services.AddControllers();

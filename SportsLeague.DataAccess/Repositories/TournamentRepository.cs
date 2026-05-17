@@ -28,6 +28,11 @@ namespace SportsLeague.DataAccess.Repositories
                     .ThenInclude(tt => tt.Team)
                 .FirstOrDefaultAsync();
         }
+
+        public Task GetByIdAsync(object tournamentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
