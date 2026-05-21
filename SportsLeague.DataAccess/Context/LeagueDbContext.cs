@@ -7,12 +7,12 @@ public class LeagueDbContext : DbContext
 {
     public LeagueDbContext(DbContextOptions<LeagueDbContext> options)
         : base(options)
-    { 
+    {
     }
 
     public DbSet<Team> Teams => Set<Team>();
     public DbSet<Player> Players => Set<Player>();
-    public DbSet<Tournament> tournaments => Set<Tournament>();
+    public DbSet<Tournament> Tournaments => Set<Tournament>();
     public DbSet<Referee> Referees => Set<Referee>();
     public DbSet<TournamentTeam> TournamentTeams => Set<TournamentTeam>();
     public DbSet<Match> Matches => Set<Match>();
@@ -269,6 +269,3 @@ public class LeagueDbContext : DbContext
 
     }
 }
-
-
-
