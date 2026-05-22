@@ -78,7 +78,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run(); 
+app.Run();
+
+// ── Services (agregar) ──
+builder.Services.AddScoped<IStandingsService, StandingsService>();
+
 
 
 
