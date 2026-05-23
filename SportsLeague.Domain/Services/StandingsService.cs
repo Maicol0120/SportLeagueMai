@@ -66,7 +66,7 @@ public class StandingsService : IStandingsService
         var standings = tournamentTeams.Select(tt =>
         {
             var teamId = tt.TeamId;
-            var teamName = ((Team)tt.Team).Name;
+            var teamName = tt.Team.Name;
 
             // Partidos como local con resultado
             var homeMatches = matches
