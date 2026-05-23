@@ -1,4 +1,4 @@
-ï»¿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using SportsLeague.Domain.Entities;
 using SportsLeague.Domain.Enums;
 using SportsLeague.Domain.Interfaces.Repositories;
@@ -38,7 +38,7 @@ public class StandingsService : IStandingsService
         var tournament = await _tournamentRepository.GetByIdAsync(tournamentId);
         if (tournament == null)
             throw new KeyNotFoundException(
-                $"No se encontrÃ³ el torneo con ID {tournamentId}");
+                $"No se encontró el torneo con ID {tournamentId}");
 
         // Obtener equipos inscritos
         var tournamentTeams = await _tournamentTeamRepository
@@ -59,14 +59,14 @@ public class StandingsService : IStandingsService
             if (result != null) allResults.Add(result);
         }
 
-        // Construir diccionario matchId -> result para acceso rÃ¡pido
+        // Construir diccionario matchId -> result para acceso rápido
         var resultsByMatch = allResults.ToDictionary(r => r.MatchId);
 
         // Calcular standings para cada equipo
         var standings = tournamentTeams.Select(tt =>
         {
-            var teamId = tt.TeamId;
-            var teamName = tt.Team.Name;
+            var teamId = tt.Id;
+            var teamName = tt.Name;
 
             // Partidos como local con resultado
             var homeMatches = matches
@@ -80,7 +80,7 @@ public class StandingsService : IStandingsService
                 .Select(m => resultsByMatch[m.Id])
                 .ToList();
 
-            // Calcular estadÃ­sticas
+            // Calcular estadísticas
             int homeWins = homeMatches.Count(r => r.HomeGoals > r.AwayGoals);
             int homeDraws = homeMatches.Count(r => r.HomeGoals == r.AwayGoals);
             int homeLosses = homeMatches.Count(r => r.HomeGoals < r.AwayGoals);
@@ -141,7 +141,7 @@ public class StandingsService : IStandingsService
         var tournament = await _tournamentRepository.GetByIdAsync(tournamentId);
         if (tournament == null)
             throw new KeyNotFoundException(
-                $"No se encontrÃ³ el torneo con ID {tournamentId}");
+                $"No se encontró el torneo con ID {tournamentId}");
 
         // Obtener todos los partidos del torneo
         var matches = await _matchRepository.GetByTournamentAsync(tournamentId);
@@ -186,7 +186,7 @@ public class StandingsService : IStandingsService
         var tournament = await _tournamentRepository.GetByIdAsync(tournamentId);
         if (tournament == null)
             throw new KeyNotFoundException(
-                $"No se encontrÃ³ el torneo con ID {tournamentId}");
+                $"No se encontró el torneo con ID {tournamentId}");
 
         var matches = await _matchRepository.GetByTournamentAsync(tournamentId);
         var matchIds = matches.Select(m => m.Id).ToHashSet();
